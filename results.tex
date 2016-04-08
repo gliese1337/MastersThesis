@@ -1,0 +1,266 @@
+\chapter{Results \& Analysis}
+
+\section{Morphological Tokenization}
+
+KLEX recognition rate: 0.941960803432
+Arabic recognition rate: 0.999975912901
+English recognition rate: 0.823230980549
+
+Both Korean experiments (explicitly checking for dependent tokens and ignoring them) produced identical output. Thus, only one set of results is shown.
+
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.147672 & 0.998735 & 0.128650 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.073835 & 0.998729 & 0.068753 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} &	0.359728 & 0.804372 & 0.248565 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{End} & 0.369030 & 0.825172 & 0.254993 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.728758 & 0.814772 & 0.384684 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.342182 & 0.765138 & 0.236442 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} & 0.173279 & 0.988841 & 0.147442 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.172365 & 0.983624 & 0.146664 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986233 & 0.255944 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.167426 & 0.955441 & 0.142462 \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Statistical Tokenization}
+\subsection{Zero Threshold}
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} & 0.161244 & 0.198645 & 0.089000 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.155542 & 0.191621 & 0.085853 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.316786 & 0.195133 & 0.120752 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 0.040653 & - \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} & 0.121731 & 0.137556 & 0.064580 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.268517 & 0.303425 & 0.142453 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.390248 & 0.220490 & 0.140888 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 0.044995 & - \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} & 0.109952 & 0.042950 & 0.030886 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.286540 & 0.111930 & 0.080489 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.396492 & 0.077440 & 0.064786 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 0.006073 & - \\ \hline
+	\end{tabular}
+	
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\multicolumn{3}{|c|}{ Predicted Fraction } \\ \hline
+		Arabic & English & Korean \\ \hline
+		0.267130 & 0.208947 & 0.099916 \\ \hline
+	\end{tabular}
+\end{center}
+
+
+\subsection{Gap Threshold}
+\begin{center}
+	\begin{tabular}{cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} & 0.216791 & 0.999788 & 0.178160 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.215843 & 0.995414 & 0.177380 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.432634 & 0.997601 & 0.301766 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 0.995372 & - \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} & 0.184909 & 1.000000 & 0.156053 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.184909 & 1.000000 & 0.156053 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.369818 & 1.000000 & 0.269976 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 1.000000 & - \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} &0.253362 & 0.990502 & 0.201755 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.252121 & 0.985649 & 0.200766 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.505483 & 0.988075 & 0.334406 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & - & 0.999663 & - \\ \hline
+	\end{tabular}
+	
+	
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\multicolumn{3}{|c|}{ Predicted Fraction } \\ \hline
+		Arabic & English & Korean \\ \hline
+		0.999988 & 0.999996 & 0.099973 \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Hybrid Tokenization}
+\subsection{Filtering}
+\subsubsection{Zero Threshold Filtering}
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} &	0.055894 & 0.198646 & 0.043620 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } &	0.186050 & 0.661221 & 0.145196 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.241944 & 0.429934 & 0.154820 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.055894 & 0.198646 & 0.043620 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} &	0.398978 & 0.121442 & 0.093103 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{End} & 0.417931 & 0.127211 & 0.097526 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.816910 & 0.124327 & 0.107905 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.378841 & 0.115313 & 0.088404 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} &	0.099060 & 0.042924 & 0.029947 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.503204 & 0.218047 & 0.152127 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.602264 & 0.130486 & 0.107249 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.095346 & 0.041315 & 0.028825 \\ \hline
+	\end{tabular}
+	
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\multicolumn{3}{|c|}{ Filter Reduction Fraction } \\ \hline
+		Arabic & English & Korean \\ \hline
+		0.262744 & 0.136125 & 0.075932 \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsubsection{Gap Threshold Filtering}
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.147672 & 0.998735 & 0.128650 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.073835 & 0.998729 & 0.068753 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} &	0.359728 & 0.804372 & 0.248565 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{End} & 0.369030 & 0.825172 & 0.254993 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.728758 & 0.814772 & 0.384684 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.342182 & 0.765138 & 0.236442 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} & 0.173275 & 0.988789 & 0.147438 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.172370 & 0.983624 & 0.146668 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986207 & 0.255942 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.167422 & 0.955389 & 0.142457 \\ \hline
+	\end{tabular}
+	
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\multicolumn{3}{|c|}{ Filter Reduction Fraction } \\ \hline
+		Arabic & English & Korean \\ \hline
+		1.000000 & 1.000000 & 0.999973 \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsection{Filling}
+\subsubsection{Zero Threshold Filling}
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} &	0.073804 & 0.998760 & 0.068726 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } &	0.073802 & 0.998735 & 0.068724 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.147607 & 0.998747 & 0.128600 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.073802 & 0.998735 & 0.068724 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} &	0.146261 & 0.953059 & 0.126801 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{End} & 0.150449 & 0.980349 & 0.130432 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.296709 & 0.966704 & 0.227028 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.138562 & 0.902896 & 0.120127 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} &	0.172582 & 0.989619 & 0.146954 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.146311 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.255347 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.166744 & 0.956141 & 0.141983 \\ \hline
+	\end{tabular}
+\end{center}
+
+\subsubsection{Gap Threshold Filling}
+\begin{center}
+	\begin{tabular}{ cc | c | c | c |}
+		\cline{3-5}
+		& & Precision & Recall & F-score \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
+		\multicolumn{1}{ |c| }{Start} &	0.073804 & 0.998760 & 0.068726 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } &	0.073802 & 0.998735 & 0.068724 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.147607 & 0.998747 & 0.128600 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.073802 & 0.998735 & 0.068724 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
+		\multicolumn{1}{ |c| }{Start} &	0.146261 & 0.953059 & 0.126801 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{End} & 0.150449 & 0.980349 & 0.130432 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} &	0.296709 & 0.966704 & 0.227028 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} &	0.138562 & 0.902896 & 0.120127 \\ \hline
+		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
+		\multicolumn{1}{ |c| }{Start} &	0.172582 & 0.989619 & 0.146954 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.146311 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.255347 \\ \cline{2-5}
+		\multicolumn{1}{ |c  }{} &
+		\multicolumn{1}{ |c| }{Pairs} & 0.166744 & 0.956141 & 0.141983 \\ \hline
+	\end{tabular}
+\end{center}

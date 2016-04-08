@@ -1,0 +1,79 @@
+\chapter{Review of Literature}
+
+%start with speech, transition to pure text, \cite{aken11}
+Speech recognition, however, as noted above, has to deal with very similar problems. The standard solution for automatic speech recognition (ASR) is to use Hidden Markov Models (HMMs) which encode the possible words of the language to transduce phonetic data into possible phonemes and words\cite{varile97}.
+
+The correct tokenization may then be selected either by applying the Viterbi algorithm over a lattice of possible tokenizations\cite{aubert94}, or by performing an on-line beam search over possible tokenizations\cite{paul94}.
+
+%distinction between lattice generation & path selection
+
+When dealing with text, the initial step of transforming phonetic data into phonemic representations is obviated, and one can instead proceed directly to assembling words from graphemes, which represents significant savings in the costs of developing language models.
+
+In addition to the NLP-oriented approach, the tokenization problem has also been studied from the point of view of language acquisition (most typically, L1 acquisition).
+
+When hearing a new language that one does not know, how does a learner begin to identify new words to add to their mental lexicon?
+
+This clearly requires some generic mechanism (although of unknown and possibly great computational complexity) for inducing probable words boundaries (where words can then be assumed to be contiguous sequences between two boundaries) from unlabeled input.
+
+That humans are able to do this provides an existence proof of the technical possibility of language-agnostic tokenization.
+
+While studying the ways that human minds may tackle tokenization is not guaranteed to produce the best possible artificial tokenization system since they may involve unnecessary complexity or require quantities of data infeasible to obtain for many NLP applications (in the same way that the best way to build an airplane is not to exactly copy a flapping bird's wing), studies of human psychological segmentation mechanisms do serve two useful purposes: They set a baseline against which errors can be measured, and they may provide an initial example implementation from which further engineering can draw\cite{daland09}.
+
+To establish a baseline of performance, it is sufficient to use manually-tagged corpora as a gold standard to test against; to provide an example implementation for re-engineering, it is important to have a reasonable psychological model of human speech segmentation. Daland\cite{daland09} argues that both statistical predictive mechanisms and lexical access are necessarily involved in human segmentation, with contributions from each shifting over the language acquisition process: statistical mechanisms in order to guess at the boundaries around new unknown words and to determine the probability that a potential bounded sequence is in fact a new word, and lexical access to filter errors. Empirical evidence for the validity of this claim is provided by Islam \cite{islam07}, who reports that many state-of-the-art NLP systems do in fact use hybrid approaches. Daland\cite{daland09} further proposes that there are only two feasible error-correction conditions for the human tokenization system: statistical over-recognition, in which case lexical access must filter out erroneously predicted word boundaries; and statistical under-recognition, in which case lexical access must be prepared to add statistically unlikely word boundaries; logically, however, both may occur in any newly-developed system.
+
+In either case, we can expect an improvement from merging statistical and lexicon-based methods as the set of correct word boundaries found by either method would not a priori be expected to form a subset of those found by the other; thus, their unions would be a larger set of correct boundaries. However, in the case of statistical under-recognition, we would expect a smaller contribution from statistical boundary prediction to the recognition of unknown words by lexicon-based methods. We would thus expect that statistical over-recognition would be the norm, and indeed, this is exactly the result obtained by Rytting\cite{rytting04}.
+
+
+Norvig\cite{norvig14} describes the use of dynamic programming with n-gram frequency data to extract segmentations of text from a lattice of potential words identified by referencing a simple lexicon of known vocabulary items.
+
+State-of-the-art speech recognizers, as well as Norvig's algorithm, however, depend strongly on good vocabulary models, and fail when presented with unknown words.
+
+
+\section{Lexical-Access Approaches}
+
+\section{Statistical Approaches}
+
+
+Significant work in the area of text tokenization has been done on segmenting Chinese and Japanese, which lack written word boundaries.
+
+Peng, Feng, \& McCallum\cite{peng04} developed a system for Chinese segmentation which recasts segmentation as a tagging problem using conditional random fields; every character is tagged as either a start-of-word character, or not *Also a hybrid system using with probabilistic new-word detection*.
+
+This avoids the need to store the entire vocabulary and allows for the proper identification of unknown words as long as they do not exhibit structural characteristics too far removed from those used to create the statistical model.
+
+The state-of-the-art Japanese segmentation system by Kudo, Yamamoto, \& Matsumoto\cite{kudo04} also makes use of conditional random fields to simultaneously achieve tokenization and morphological analysis by selecting the best path through a lattice of possible morpheme-level tokenizations generated from a morphologically-aware dictionary.
+
+Suzuki, Brockett, and Kacmarcik\cite{suzuki00} investigated a similar split-responsibility method using a parser to determine the best tokenization from a lattice. Neither or these studies, however, reported on efficient methods of lattice generation.
+
+In my own previous work, I addressed the problem of efficient lattice generation using a lexical finite-state transducer based on the KIMMO two-level morphology system \cite{koskenniemi84}. 
+
+This system is capable of generating a lattice of all possible sequences of known morphemes that could be extracted from an input stream in amortized constant time per-character performance, or amortized linear time performance over arbitrary sized inputs, as each input character needs to be examined exactly once to determine which morphemes it could be part of\cite{kearsley13}.
+
+Storing the lexicon as a finite-state transducer both saves a great deal of space and also allows recognition of a potentially infinite number of regularly derived or inflected words.
+
+However, unlike statistical approaches, and like Norvig's naive algorithm \cite{norvig14}, this lexicon-based tokenizer is fundamentally incapable of recognizing the boundaries of unknown morphemes or the words that contain them.
+
+While several statistical features have been investigated and found useful in predicting word boundaries, such as segment-to-segment transition probabilities\cite{brent96}, Rytting \cite{rytting04} showed that a very simple mutual-information model was both better than competing transition-probability models and highly over-predictive on its own.
+
+Brent\cite{brent99} and Rytting\cite{rytting04} both investigated simple character-level statistical cues (specifically including character transition probabilities and bigram mutual information scores) that could be used as effective predictors of word boundaries during language acquisition.
+
+The identification of such useful "minimal information" predictors holds significant promise for developing simplifications of Daland's cognitive model\cite{daland09} and further improving the performance of hybrid tokenizers.
+
+While Brent\cite{brent99} assumed that a prediction technique based on local comparisons (i.e., looking for significant differences between the values of a given statistical measurement between adjacent positions in the text), would be most appropriate for identifying word boundaries, Rytting\cite{rytting04} argued that this is guaranteed to under-predict due to the impossibility of correctly identifying common single-segment words (since the values of any two measurements in immediately adjacent positions cannot simultaneously be either significantly greater than or significantly less than each other).
+
+Indeed, Rytting\cite{rytting04} found using bigram mutual information (MI) scores with a global threshold for comparison to be the most effective of the techniques that he tested.
+
+This is despite the fact that the threshold of zero used in Rytting's study\cite{rytting04} was chosen "arbitrarily" with no justification attempted.
+
+replication, tried alternate threshold methods \cite{kearsley14}
+
+\section{Hybrid Approaches}
+
+To that end, I have built a series of segmentation algorithms based on language-agnostic core algorithms, which are hypothesized to work across languages that are orthographically and typologically (specifically, morphologically) dissimilar. To test this hypothesis, purely statistical, morphological, and hybrid segmentation algorithms are tested on corpora of English, Korean, and Arabic.
+
+Add research on:
+TiMBL
+Max-Ent
+MEMM
+Decision Tree
+
+Say that I'm ignoring them, and then talk about them again in Future Work.

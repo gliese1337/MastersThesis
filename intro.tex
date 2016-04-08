@@ -1,0 +1,16 @@
+\chapter{Introduction}
+One of the most basic and yet often overlooked problems in natural language processing (NLP) is word boundary detection (also tokenization, segmentation, or lexing). Identifying words is a critical preprocessing step before almost any other work can be done with text: frequency counting, part-of-speech tagging, parsing, etc. While the problem cannot be ignored in speech processing \cite{varile96}, when it comes to text this step is often considered to be trivial: simply split words on whitespace. While often good enough, however, that approach is far from perfectly accurate. For example, even with perfectly clean data, this approach fails to account for:
+\begin{enumerate}
+	\item Word boundaries that correctly occur in the absence of whitespace (e.g., before punctuation, in specialized genres like URLs, or simply due to typographical errors)
+	\item Whitespace that may not indicate a relevant boundary in certain applications (e.g., spaces in compounds, idioms, and borrowed foreign-language phrases used as single logical lexical units).
+\end{enumerate}
+These complications can be accounted for in various ways, this must be done on an individual language-by-language basis. Even languages that all use the Roman alphabet, there are significant differences in whitespace and punctuation conventions. The tokenization conventions for the Penn Treebank, for example, separate “most punctuation” \cite{treebank}, but depend on prior knowledge of sentence boundaries to help disambiguate final periods from periods indicating abbreviations and on English-specific knowledge about the structure of contractions and cliticized forms. Furthermore, the whitespace approach fails entirely when working with languages whose writing systems traditionally have no spaces or other written word breaks, such as Chinese or Japanese. In these cases, once again, separate tokenization systems are typically developed on a per-language basis \cite{peng04} \cite{suzuki00}.
+In developing software for reading and teaching multiple foreign languages, the complexity of developing separate systems to support proper display and NLP-enhanced interactivity for every desired language quickly becomes impractical, thus severely limiting the number of languages that can be supported and the level of functionality available for each language. Given that the human ability to successfully read any natural language provides an existence proof that a generalized segmentation system (as implemented in the human brain) is possible, it is prudent to investigate the feasibility of a language-agnostic segmentation system that could be easily integrated into larger NLP systems.
+To that end, I have built a series of segmentation algorithms based on language-agnostic core algorithms, which is are hypothesized to work across languages that are orthographically and typologically (specifically, morphologically) dissimilar. To test this hypothesis, purely statistical, morphological, and hybrid segmentation algorithms are tested on corpora of English, Korean, and Arabic.
+
+5 Questions:
+1. What am I doing?
+2. Who cares? Why is it interesting?
+3. What have other people done?
+4. How are you going to do this?
+5. How will we know you succeeded?
