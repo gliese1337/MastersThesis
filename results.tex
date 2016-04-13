@@ -1,4 +1,33 @@
-\chapter{Results \& Analysis}
+\chapter{Results \& Discussion}
+
+%% F-scores for complete word recognition
+\begin{center}
+	\begin{tabular}{ | c | c | c | c |}
+		\cline{2-4}
+		\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
+		Morphological & 0.137505 & 0.346242 & 0.284924 \\ \hline
+		Zero Filter & 0.087241 & 0.155838 & 0.057650 \\ \hline
+		Zero Fill & 0.137448 & 0.074367 & 0.283966 \\ \hline
+		Gap Filter & 0.137505 & 0.346242 & 0.142457 \\ \hline
+		Gap Fill & 0.137448 & 0.074367 & 0.283966 \\ \hline
+	\end{tabular}
+\end{center}
+
+%% F-scores for single-boundary word recognition
+\begin{center}
+	\begin{tabular}{ | c | c | c | c |}
+		\cline{2-4}
+		\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
+		Morphological & 0.257299 & 0.601582 & 0.511887 \\ \hline
+		Zero Threshold & 0.242313 & 0.280959 & 0.129573 \\ \hline
+		Zero Filter & 0.309639 & 0.256445 & 0.214498 \\ \hline
+		Zero Fill & 0.257201 & 0.153340 & 0.510694 \\ \hline
+		Gap Threshold & 0.606717 & 0.539698 & 0.668813 \\ \hline
+		Gap Filter & 0.257299 & 0.601582 & 0.511884 \\ \hline
+		Gap Fill & 0.257201 & 0.153340 & 0.510694 \\ \hline
+	\end{tabular}
+\end{center}
+
 
 \section{Morphological Tokenization}
 
@@ -13,29 +42,29 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.073836 & 0.998735 & 0.137506 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.073836 & 0.998735 & 0.137506 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.147672 & 0.998735 & 0.128650 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.147672 & 0.998735 & 0.257299 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.073835 & 0.998729 & 0.068753 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.073835 & 0.998729 & 0.137505 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} &	0.359728 & 0.804372 & 0.248565 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.238051 & 0.808606 & 0.367818 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{End} & 0.369030 & 0.825172 & 0.254993 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.239844 & 0.814696 & 0.370588 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.728758 & 0.814772 & 0.384684 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.477895 & 0.811651 & 0.601582 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.342182 & 0.765138 & 0.236442 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.224087 & 0.761174 & 0.346242 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} & 0.173279 & 0.988841 & 0.147442 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.173279 & 0.988841 & 0.294884 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.172365 & 0.983624 & 0.146664 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.172365 & 0.983624 & 0.293328 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986233 & 0.255944 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986233 & 0.511887 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.167426 & 0.955441 & 0.142462 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.167426 & 0.955441 & 0.284924 \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -46,36 +75,36 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} & 0.161244 & 0.198645 & 0.089000 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.162632 & 0.198899 & 0.178947 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.155542 & 0.191621 & 0.085853 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.156655 & 0.191589 & 0.172370 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.316786 & 0.195133 & 0.120752 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.319287 & 0.195244 & 0.242313 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 0.040653 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.040725 & - \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} & 0.121731 & 0.137556 & 0.064580 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.121669 & 0.137783 & 0.129225 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.268517 & 0.303425 & 0.142453 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.266911 & 0.302261 & 0.283488 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.390248 & 0.220490 & 0.140888 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.388580 & 0.220022 & 0.280959 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 0.044995 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.046703 & - \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} & 0.109952 & 0.042950 & 0.030886 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.109952 & 0.042950 & 0.061771 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.286540 & 0.111930 & 0.080489 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.286540 & 0.111930 & 0.160978 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.396492 & 0.077440 & 0.064786 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.396492 & 0.077440 & 0.129573 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 0.006073 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.006073 & - \\ \hline
 	\end{tabular}
 	
 	\begin{tabular}{| c | c | c |}
 		\hline
 		\multicolumn{3}{|c|}{ Predicted Fraction } \\ \hline
 		Arabic & English & Korean \\ \hline
-		0.267130 & 0.208947 & 0.099916 \\ \hline
+		0.267130 & 0.209335 & 0.099916 \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -86,29 +115,29 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} & 0.216791 & 0.999788 & 0.178160 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.218421 & 0.999982 & 0.358530 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.215843 & 0.995414 & 0.177380 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.217459 & 0.995580 & 0.356952 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.432634 & 0.997601 & 0.301766 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.435880 & 0.997781 & 0.606717 \\
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 0.995372 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.9955628 & - \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} & 0.184909 & 1.000000 & 0.156053 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.184808 & 0.999700 & 0.311948 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.184909 & 1.000000 & 0.156053 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.184812 & 0.999720 & 0.311954 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.369818 & 1.000000 & 0.269976 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.369619 & 0.999710 & 0.539698 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 1.000000 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.999621 & - \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} &0.253362 & 0.990502 & 0.201755 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} &0.253362 & 0.990502 & 0.403510 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.252121 & 0.985649 & 0.200766 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.252121 & 0.985649 & 0.401533 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.505483 & 0.988075 & 0.334406 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.505483 & 0.988075 & 0.668813 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & - & 0.999663 & - \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & - & 0.999663 & - \\ \hline
 	\end{tabular}
 	
 	
@@ -116,7 +145,7 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\hline
 		\multicolumn{3}{|c|}{ Predicted Fraction } \\ \hline
 		Arabic & English & Korean \\ \hline
-		0.999988 & 0.999996 & 0.099973 \\ \hline
+		0.999988 & 0.999945 & 0.999973 \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -128,36 +157,36 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} &	0.055894 & 0.198646 & 0.043620 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.055894 & 0.198646 & 0.087241 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } &	0.186050 & 0.661221 & 0.145196 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.186050 & 0.661221 & 0.290392 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.241944 & 0.429934 & 0.154820 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.241944 & 0.429934 & 0.309639 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.055894 & 0.198646 & 0.043620 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.055894 & 0.198646 & 0.087241 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} &	0.398978 & 0.121442 & 0.093103 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.263174 & 0.120861 & 0.165648 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{End} & 0.417931 & 0.127211 & 0.097526 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.423457 & 0.194469 & 0.266534 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.816910 & 0.124327 & 0.107905 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.686630 & 0.157665 & 0.256445 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.378841 & 0.115313 & 0.088404 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.247587 & 0.113702 & 0.155838 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} &	0.099060 & 0.042924 & 0.029947 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.099060 & 0.042924 & 0.059895 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.503204 & 0.218047 & 0.152127 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.503204 & 0.218047 & 0.304255 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.602264 & 0.130486 & 0.107249 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.602264 & 0.130486 & 0.214498 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.095346 & 0.041315 & 0.028825 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.095346 & 0.041315 & 0.057650 \\ \hline
 	\end{tabular}
 	
 	\begin{tabular}{| c | c | c |}
 		\hline
 		\multicolumn{3}{|c|}{ Filter Reduction Fraction } \\ \hline
 		Arabic & English & Korean \\ \hline
-		0.262744 & 0.136125 & 0.075932 \\ \hline
+		0.262744 & 0.135199 & 0.075932 \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -167,29 +196,30 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.073836 & 0.998735 & 0.137506 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } &	0.073836 & 0.998735 & 0.068753 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.073836 & 0.998735 & 0.137506 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.147672 & 0.998735 & 0.128650 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.147672 & 0.998735 & 0.257299 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.073835 & 0.998729 & 0.068753 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.073835 & 0.998729 & 0.137505 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} &	0.359728 & 0.804372 & 0.248565 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.238051 & 0.808606 & 0.367818 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{End} & 0.369030 & 0.825172 & 0.254993 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.239844 & 0.814696 & 0.370588 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.728758 & 0.814772 & 0.384684 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.477895 & 0.811651 & 0.601582 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.342182 & 0.765138 & 0.236442 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.224087 & 0.761174 & 0.346242 \\
+		\hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} & 0.173275 & 0.988789 & 0.147438 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.173275 & 0.988789 & 0.294875 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.172370 & 0.983624 & 0.146668 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.172370 & 0.983624 & 0.293335 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986207 & 0.255942 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.345644 & 0.986207 & 0.511884 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.167422 & 0.955389 & 0.142457 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.167422 & 0.955389 & 0.284915 \\ \hline
 	\end{tabular}
 	
 	\begin{tabular}{| c | c | c |}
@@ -207,29 +237,29 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} &	0.073804 & 0.998760 & 0.068726 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.073804 & 0.998760 & 0.137451 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } &	0.073802 & 0.998735 & 0.068724 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.073802 & 0.998735 & 0.137448 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.147607 & 0.998747 & 0.128600 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.147607 & 0.998747 & 0.257201 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.073802 & 0.998735 & 0.068724 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.073802 & 0.998735 & 0.137448 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} &	0.146261 & 0.953059 & 0.126801 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.041307 & 0.970349 & 0.079241 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{End} & 0.150449 & 0.980349 & 0.130432 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.041891 & 0.984056 & 0.080360 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.296709 & 0.966704 & 0.227028 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.083198 & 0.977203 & 0.153340 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.138562 & 0.902896 & 0.120127 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.038767 & 0.910667 & 0.074367 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} &	0.172582 & 0.989619 & 0.146954 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.172582 & 0.989619 & 0.293908 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.146311 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.292621 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.255347 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.510694 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.166744 & 0.956141 & 0.141983 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.166744 & 0.956141 & 0.283966 \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -239,28 +269,28 @@ Both Korean experiments (explicitly checking for dependent tokens and ignoring t
 		\cline{3-5}
 		& & Precision & Recall & F-score \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Arabic} } &
-		\multicolumn{1}{ |c| }{Start} &	0.073804 & 0.998760 & 0.068726 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.073804 & 0.998760 & 0.137451 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } &	0.073802 & 0.998735 & 0.068724 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.073802 & 0.998735 & 0.137448 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.147607 & 0.998747 & 0.128600 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.147607 & 0.998747 & 0.257201 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.073802 & 0.998735 & 0.068724 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.073802 & 0.998735 & 0.137448 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{English} } &
-		\multicolumn{1}{ |c| }{Start} &	0.146261 & 0.953059 & 0.126801 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.041307 & 0.970349 & 0.079241 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{End} & 0.150449 & 0.980349 & 0.130432 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{End} & 0.041891 & 0.984056 & 0.080360 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} &	0.296709 & 0.966704 & 0.227028 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.083198 & 0.977203 & 0.153340 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} &	0.138562 & 0.902896 & 0.120127 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.038767 & 0.910667 & 0.074367 \\ \hline
 		\multicolumn{1}{ |c }{ \multirow{4}{*}{Korean} } &
-		\multicolumn{1}{ |c| }{Start} &	0.172582 & 0.989619 & 0.146954 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Start} & 0.172582 & 0.989619 & 0.293908 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.146311 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{ End } & 0.171826 & 0.985285 & 0.292621 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.255347 \\ \cline{2-5}
+		\multicolumn{1}{ |c| }{Total} & 0.344408 & 0.987452 & 0.510694 \\ \cline{2-5}
 		\multicolumn{1}{ |c  }{} &
-		\multicolumn{1}{ |c| }{Pairs} & 0.166744 & 0.956141 & 0.141983 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.166744 & 0.956141 & 0.283966 \\ \hline
 	\end{tabular}
 \end{center}
