@@ -5,6 +5,9 @@
 
 \documentclass[12pt]{report}
 \usepackage{multirow}
+\usepackage{arabtex}
+\usepackage{utf8}
+\usepackage{placeins}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Setup BYU thesis format
@@ -14,7 +17,7 @@
 \byustylesetup{
 	%
 	%isdissertation = true,           % Uncomment this if you're doing a PhD dissertation
-	%etdsubmission = true,            % Uncomment this if you're compiling it for ETD submission
+	etdsubmission = true,            % Uncomment this if you're compiling it for ETD submission
 	singlepageabstract = true, % Comment this out if your abstract is multiple pages
 	singlepageacknowledgements = true, % Uncomment this if your Acknowledgements is multiple pages
 	%
@@ -36,8 +39,8 @@
 	%nouniversitypages = true,  % Don't show any of the "university pages"
 	noacknowledgements = true, % Don't show the Acknowledgements page
 	%notableofcontents = true,  % Don't show the Table of Contents
-	nolistoffigures = true,    % Don't show the List of Figures
-	nolistoftables = true,     % Don't show the List of Tables
+	%nolistoffigures = true,    % Don't show the List of Figures
+	%nolistoftables = true,     % Don't show the List of Tables
 	%notocandlists = true,      % Don't show the Table of Contents, List of Figures, or the List of Tables
 	%noheaderatall = true,      % Don't show any of the BYU Thesis header pages
 }
@@ -74,7 +77,7 @@
 	 linktocpage  = false, % make page number, not text, be link on TOC, LOF and LOT
 	 colorlinks   = false, % Color the text of links (true) or put color frames over
 				  % the links (false).
-	% NOTE: if you need to use a dvi->ps->pdf path for things like PSTricks, you
+	% If you need to use a dvi->ps->pdf path for things like PSTricks, you
 	% may find that commenting out the next line is necessary.
 	pdfborder    = 001,   % sets the default for pdf links                      
 	pdfstartview = {FitH},  % Set the startup page view. Possible options are:
@@ -125,7 +128,7 @@
 
 % To only print a few chapters without changing the reference numbers,
 % uncomment the chapters you want
-\includeonly{litreview,methodology,results}
+\includeonly{litreview,methodology,results,future}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start Document
