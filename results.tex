@@ -1,69 +1,45 @@
 \chapter{Results \& Discussion}
 \FloatBarrier
 
-Overall system performance on boundary identification for all seven experiments on all three languages is summarized in \ref{bsumtable}. Since F-scores were not calculated for token identification on the pure statistical experiments, \ref{tsumtable} provides a summary of system performance on the remaining five experiments across all three languages.
+Table \ref{bsumtable} summarizes overall system performance on boundary identification for all seven experiments on all three languages. Since F-scores were not calculated for token identification on the pure statistical experiments, \ref{tsumtable} provides a summary of system performance on the remaining five experiments across all three languages.
 
 These summary views show significant variability in F-score across languages on almost every experiment, with the notable exception of gap threshold boundary recognition (listed in \ref{bsumtable}). These summary numbers, while an important indicator of the range of performance that can be expected from this kind of system using off-the-shelf data sources, do not, however, account for variability in the performance of individual morphological models or mismatches between the effective token definitions used by the answer keys versus the tokenizer. Examining the raw precision and recall scores for each individual experiment provides much deeper insights.
 
 \begin{table}
-	\centering
-	\begin{tabular}{ | c | c | c | c |}
-		\cline{2-4}
-		\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
-		Morphological & 0.137505 & 0.346242 & 0.284924 \\ \hline
-		Zero Filter & 0.087241 & 0.155838 & 0.057650 \\ \hline
-		Zero Fill & 0.137448 & 0.074367 & 0.283966 \\ \hline
-		Gap Filter & 0.137505 & 0.346242 & 0.142457 \\ \hline
-		Gap Fill & 0.137448 & 0.074367 & 0.283966 \\ \hline
-	\end{tabular}
-	\caption{F-scores for token recognition}
-	\label{tsumtable}
-\end{table}
+	\parbox{1\linewidth}{
+		\centering
+		\begin{tabular}{ | c | c | c | c |}
+			\cline{2-4}
+			\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
+			Morphological & 0.257299 & 0.601582 & 0.511887 \\ \hline \hline
+			Zero Threshold & 0.242313 & 0.280959 & 0.129573 \\ \hline
+			Zero Filter & 0.309639 & 0.256445 & 0.214498 \\\hline \hline
+			Gap Threshold & 0.606717 & 0.539698 & 0.668813 \\ \hline
+			Gap Filter & 0.257299 & 0.601582 & 0.511884 \\ \hline \hline
+			Fill & 0.257201 & 0.153340 & 0.510694 \\ \hline
+		\end{tabular}
+		\caption{F-scores for boundary recognition}
+		\label{bsumtable}
+	}
 
-\begin{table}
-	\centering
-	\begin{tabular}{ | c | c | c | c |}
-		\cline{2-4}
-		\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
-		Morphological & 0.257299 & 0.601582 & 0.511887 \\ \hline \hline
-		Zero Threshold & 0.242313 & 0.280959 & 0.129573 \\ \hline
-		Zero Filter & 0.309639 & 0.256445 & 0.214498 \\ \hline
-		Zero Fill & 0.257201 & 0.153340 & 0.510694 \\ \hline \hline
-		Gap Threshold & 0.606717 & 0.539698 & 0.668813 \\ \hline
-		Gap Filter & 0.257299 & 0.601582 & 0.511884 \\ \hline
-		Gap Fill & 0.257201 & 0.153340 & 0.510694 \\ \hline
-	\end{tabular}
-	\caption{F-scores for boundary recognition}
-	\label{bsumtable}
+	\parbox{1\linewidth}{
+		\centering
+		\begin{tabular}{ | c | c | c | c |}
+			\cline{2-4}
+			\multicolumn{1}{c|}{} & Arabic & English & Korean \\ \hline
+			Morphological & 0.137505 & 0.346242 & 0.284924 \\ \hline
+			Zero Filter & 0.087241 & 0.155838 & 0.057650 \\ \hline
+			Gap Filter & 0.137505 & 0.346242 & 0.142457 \\ \hline
+			Fill & 0.137448 & 0.074367 & 0.283966 \\ \hline
+		\end{tabular}
+		\caption{F-scores for token recognition}
+		\label{tsumtable}
+	}
 \end{table}
 \FloatBarrier
 
 \section{Morphological Tokenization}
 \FloatBarrier
-
-The Korean morphological experiments surprisingly produced identical output when explicitly checking for dependent tokens and when ignoring them. Thus, only one set of Korean results is shown.
-
-\ref{rectable} shows the results of coverage tests for types and tokens for each morphological analyzer. The token recall rates for each language as shown in \ref{morphtable} closely track the token coverage rates of the respective analyzers, which indicates that, given a suitable morphological model, this approach to lattice generation does indeed generalize well across languages.
-
-MADAMIRA, with the best coverage, failed to recognize only four types in the entire corpus, all of which were abbreviations in non-Arabic script. The unusually low coverage of ENGLEX is attributable to multiple factors. First, unlike the other two analyzers, ENGLEX did not recognize punctuation, which eliminates a large group of common types. A more significant contribution to ENGLEX's low performance, however, is due to arguable errors in the answer key, and hence errors in the annotations to the OANC. Specifically, a large number of the types which ENGLEX failed to recognize are things like ``Alaska--are", ``bed-", or ``city--to"\textemdash~ agglomerations of one or more words and punctuation which reasonably should be interpreted as multiple tokens. Both ENGLEX and KLEX, however, failed to identify over a thousand genuine word types genuinely present in the corpora. Neither ENGLEX nor KLEX correctly identified numerical tokens, and ENGLEX failed to recognize punctuation.
-
-Precision scores are more variable. This is attributable to the level of genuine ambiguity recognized by the model, which is in part a feature of specific morphological analyzers but is also largely dependent on the real features of a language. English, with the highest token precision score, has a relatively low rate of smaller tokens occurring as substrings of larger tokens, which as attributable to the relatively isolating nature of English morphology compared to Arabic or Korean. Additionally, the English precision scores are artificially lowered due to the English tokenizer \textit{correctly} identifying individual words in the aforementioned agglomerations like ``city--to", which are missing from the answer key.
-
-The extremely low precisions seen for Arabic in comparison to either English or Korean are easily explained by the nature of Arabic orthography- since short vowels are typically not written, this explodes the number of possible analyses that have to be considered for any given string of text, even compared to the large number of prefix analyses necessitated by Korean's agglutinative morphology. The results for this particular experiment, however, are likely particularly bad due to the overly-helpful nature of MADAMIRA as previously described; these low precision scores reflect the identification of strings like \novocalize``\RL{almtxhdah)}" as possible unique tokens, where MADAMIRA has ``helpfully" ignored a piece of punctuation which should have simply invalidated that string, thus causing the tokenizer to output a spurious token hypothesis.
-
-\begin{table}
-	\centering
-	\begin{tabular}{ c | c | c | c |}
-		\cline{2-4}
-		& MADAMIRA (Arabic) & ENGLEX (English) & KLEX (Korean) \\ \hline
-		\multicolumn{1}{ |c| }{Types} & 0.999764 & 0.747059 & 0.924060 \\ \hline
-		\multicolumn{1}{ |c| }{Tokens} & 0.999976 & 0.761174 & 0.941961 \\ \hline
-	\end{tabular}
-	
-	\caption{Morphological Analyzer Recognition Rates}
-	\label{rectable}
-\end{table}
-
 \begin{table}
 	\centering
 	\begin{tabular}{ cc | c | c | c |}
@@ -97,15 +73,35 @@ The extremely low precisions seen for Arabic in comparison to either English or 
 	\caption{Results for morphological tokenization}
 	\label{morphtable}
 \end{table}
-\FloatBarrier
 
+\begin{table}
+	\centering
+	\begin{tabular}{ c | c | c | c |}
+		\cline{2-4}
+		& MADAMIRA (Arabic) & ENGLEX (English) & KLEX (Korean) \\ \hline
+		\multicolumn{1}{ |c| }{Types} & 0.999764 & 0.747059 & 0.924060 \\ \hline
+		\multicolumn{1}{ |c| }{Tokens} & 0.999976 & 0.761174 & 0.941961 \\ \hline
+	\end{tabular}
+	
+	\caption{Morphological Analyzer Recognition Rates}
+	\label{rectable}
+\end{table}
+
+Table \ref{morphtable} presents the results of the morphological tokenization experiments, while table \ref{rectable} shows the morphological recognition rates for each analyzer. Surprisingly, the Korean morphological experiments produced identical output when explicitly checking for dependent tokens and when ignoring them. Thus, only one set of Korean results is shown. The token recall rates for each language closely track the token coverage rates of the respective analyzers, which indicates that, given a suitable morphological model, this approach to lattice generation does indeed generalize well across languages.
+
+MADAMIRA, with the best coverage, failed to recognize only four types in the entire corpus, all of which were abbreviations in non-Arabic script. The unusually low coverage of ENGLEX is attributable to multiple factors. First, unlike the other two analyzers, ENGLEX did not recognize punctuation, which eliminates a large group of common types. A more significant contribution to ENGLEX's low performance, however, is due to arguable errors in the answer key, and hence errors in the annotations to the OANC. Specifically, a large number of the types which ENGLEX failed to recognize are sequences like ``Alaska--are", ``bed-", or ``city--to"\textemdash agglomerations of one or more words and punctuation which reasonably should be interpreted as multiple tokens. Both ENGLEX and KLEX, however, failed to identify over a thousand genuine word types genuinely present in the corpora. Neither ENGLEX nor KLEX correctly identified numerical tokens, and ENGLEX failed to recognize punctuation.
+
+Precision scores are more variable. This is attributable to the level of genuine ambiguity recognized by the model, which is in part a feature of specific morphological analyzers but is also largely dependent on the real features of a language. English, with the highest token precision score, has a relatively low rate of smaller tokens occurring as substrings of larger tokens, which as attributable to the relatively isolating nature of English morphology compared to Arabic or Korean. Additionally, the English precision scores are artificially lowered due to the English tokenizer \textit{correctly} identifying individual words in the aforementioned agglomerations like ``city--to", which are missing from the answer key.
+
+The extremely low precision seen for Arabic is are easily explained by the nature of Arabic orthography. Since short vowels are typically not written, this explodes the number of possible analyses that have to be considered for any given string of text, even compared to the large number of prefix analyses necessitated by Korean's agglutinative morphology. The results for this particular experiment, however, are likely particularly bad due to the overly-helpful nature of MADAMIRA as previously described; these low precision scores reflect the identification of strings like \novocalize``\RL{almtxhdah)}" as possible unique tokens, where MADAMIRA has ``helpfully" ignored a piece of punctuation which should have simply invalidated that string, thus causing the tokenizer to output a spurious token hypothesis.
+
+\FloatBarrier
 \section{Statistical Tokenization}
+
+Having considered the purely morphological approach, we now turn to the two methods of mutual-information based statistical tokenization: zero threshold and gap threshold boundary prediction. Recall that the zero threshold method predicts a token boundary between any two codepoints whose MI score is below zero, while the gap threshold approach predicts a token boundary between any two codepoints whose MI score is below the largest gap in the set of all MI scores for all possible codepoint pairs in a given language.
+
 \subsection{Zero Threshold}
 \FloatBarrier
-
-\ref{zpredtable} shows the fraction of all codepoint boundaries which were identified as possible token boundaries in each language. Surprisingly, the prediction rates closely correspond to recall performance for each language\textemdash~ Korean, with the lowest prediction rate, also shows the lowest recall and F-scores, while English and Arabic are comparatively very close together. This suggests that a large fraction of correct boundaries are being identified essentially at random, such that a larger number of guesses produces a larger number of correct guesses. Per my previous work on English, however, this method is known to show a statistically significant improvement in performance over purely random guessing \cite{kearsley14}.
-
-There is remarkable similarity between all three languages on total boundary precision. Compared to my \cite{kearsley14} and Rytting's \cite{rytting04} prior results, however, these look quite bad. Since my previous experiments were in fact run on a different subset of the same larger corpus (OANC), this suggests that the similarity of results seen here may simply be coincidental. This approach, therefore, does not seem to generalize well either across languages or even across different corpora within the same language. The practical usefulness of this method is thus determined by the level of overlap between it's predictions and those of morphological tokenization, which is addressed in the hybrid experiments.
 
 \begin{table}
 	\centering
@@ -151,14 +147,16 @@ There is remarkable similarity between all three languages on total boundary pre
 	\caption{Results for Zero-threshold statistical tokenization}
 	\label{zstattable}
 \end{table}
+
+
+Table \ref{zpredtable} shows the fraction of all codepoint boundaries which were identified as possible token boundaries in each language by the zero-threshold criterion. Surprisingly, the prediction rates closely correspond to recall performance for each language\textemdash Korean, with the lowest prediction rate, also shows the lowest recall and F-scores, while English and Arabic are comparatively very close together. This suggests that a large fraction of correct boundaries are being identified essentially at random, such that a larger number of guesses produces a larger number of correct guesses. Per my previous work on English, however, this method is known to show a statistically significant improvement in performance over purely random guessing \cite{kearsley14}.
+
+Table \ref{zstattable} presents the remaining results of the zero-threshold experiments. There is remarkable similarity between all three languages on total boundary precision. Compared to my \cite{kearsley14} and Rytting's \cite{rytting04} prior results, however, these look quite bad. Since my previous experiments were run on a different subset of the same larger corpus (OANC), this suggests that the similarity of results seen here may simply be coincidental. This approach, therefore, does not seem to generalize well either across languages or even across different corpora within the same language. The practical usefulness of this method is thus determined by the level of overlap between it's predictions and those of morphological tokenization, which is addressed in the hybrid experiments.
+
 \FloatBarrier
 
 \subsection{Gap Threshold}
 \FloatBarrier
-
-\ref{gpredtable} shows the fraction of all codepoint boundaries which were identified as possible token boundaries in each language. In one sense, this is clear evidence of generalization- in all three languages, a similar fraction of boundaries were identified. Unfortunately, this makes the model very nearly useless for practical purposes. It fails to capture the unique structural features of each language's lexicon, and is thus little better than the brute-force case of hypothesizing that \textit{every} codepoint boundary is a possible token boundary. It is, in fact, worse than brute-force in one significant way: although the recall scores shown in \ref{gstattable} are very high, they are not 100\%, meaning that despite extreme levels of overprediction, the gap threshold statistical approach still missed some real token boundaries.
-
-Given the marginal difference from hypothesizing every codepoint boundary, the precision scores (and thus F-scores) for this method are almost entirely determined by the average token length in each language. None of the languages tested have sufficiently distinctive bigram-level token-boundary statistics to prevent prediction of spurious boundaries internal to actual tokens. Assuming a uniform distribution of predicted boundaries throughout the text, the number of spurious boundaries internal to an actual token is inversely related to the number of actual tokens in the text, and thus directly related to average token length. As in the zero-threshold case, the practical usefulness of this method is thus determined by the level of overlap between it's predictions and those of morphological tokenization.
 
 \begin{table}
 	\centering
@@ -204,13 +202,21 @@ Given the marginal difference from hypothesizing every codepoint boundary, the p
 	\caption{Results for Gap threshold statistical tokenization}
 	\label{gstattable}
 \end{table}
+
+Table \ref{gpredtable} shows the fraction of all codepoint boundaries which were identified as possible token boundaries in each language by the gap-threshold criterion. In all three languages, a similar high fraction of boundaries were identified. Table \ref{gstattable} presents the remaining results of the gap-threshold experiments. Precision scores for this method are higher than those for the zero-threshold experiments on Arabic and Korean, and comparable to those from the morphological experiments on all languages. Recall rates for this method are the highest out of all seven total methods tried.
+
+In one sense, the uniformly high recall rates are clear evidence of generalization. Unfortunately, however, the extremely high prediction rate of this model makes it very nearly useless for practical purposes. It fails to capture the unique structural features of each language's lexicon, and is thus little better than the brute-force case of hypothesizing that \textit{every} codepoint boundary is a possible token boundary. It is, in fact, even worse than brute-force in one significant way: although the recall scores shown in \ref{gstattable} are very high, they are not \textit{1.0}. This means that despite extreme levels of overprediction, the gap threshold statistical approach still missed some real token boundaries.
+
+Given the marginal difference from hypothesizing every codepoint boundary, the precision scores (and thus F-scores) for this method are almost entirely determined by the average token length in each language. None of the languages tested have sufficiently distinctive bigram-level token-boundary statistics to prevent prediction of spurious boundaries internal to actual tokens. Assuming a uniform distribution of predicted boundaries throughout the text, the number of spurious boundaries internal to an actual token is inversely related to the number of actual tokens in the text, and thus directly related to average token length. As in the zero-threshold case, the practical usefulness of this method is thus determined by the level of overlap between it's predictions and those of morphological tokenization.
+
 \FloatBarrier
 
 \section{Hybrid Tokenization}
+
+We now consider hybrid methods, which attempt to improve performance by combining the strengths of both morphological and statistical models. I tested two hybridization methods: filtering and filling. Filtering aims to improve the precision of morphological tokenization by eliminating token hypotheses which start at statistically unlikely locations. Filling aims to improve the recall of morphological tokenization by predicting additional boundaries in spans where the morphological model could not recognize any possible tokens.
+
 \subsection{Filtering}
 \FloatBarrier
-
-As could be predicted from the poor recall scores obtained in the zero-threshold statistical experiment, zero-threshold filtering resulted in reduced scores for almost all measures (listed in \ref{zflttable}) compared to pure morphological tokenization. There are slight improvements to ending boundary precisions for Arabic and Korean, and a slight increase in start boundary precision and token precision on English, but these are far outweighed by the reduced recall rates. Additionally, while useful for comparison with the pure statistical experiments, single-boundary precision is one of the least consequential performance metrics. What matters most are token precision and token recall; i.e., not merely correctly identifying individual boundaries, but correctly pairing them. While the filtering method did in fact achieve its goal of increasing precision, the fact that it only produced marginal improvement on token precision in one language, and had a severely negative effect on recall, makes this an essentially useless combination for practical purposes. The reduction rates, indicating potential run-time efficiency improvements, shown in \ref{zredtable}, while impressive, are thus unfortunately irrelevant.
 
 \begin{table}
 	\centering
@@ -257,9 +263,7 @@ As could be predicted from the poor recall scores obtained in the zero-threshold
 	\label{zflttable}
 \end{table}
 
-The results for gap threshold filtering show better performance, but no better utility. As shown in \ref{gredtable}, the level of overprediction produced by the gap threshold algorithm resulted in almost no actual filtering of the morphological outputs. In consequence, the results are identical between these two methods for Arabic and English. Only tiny (less than $\pm.01\%$) differences exist for Korean. The extra time needed to calculate statistical information is thus, in this case, a performance loss rather than a gain.
-
-Korean was the only language for which any filtering occurred at all. Unfortunately, even with the high level of overprediction in the gap threshold statistical results, the set of correct boundaries predicted by the gap threshold statistical algorithm did not completely overlap with the set of correct start boundaries predicted by the morphological algorithm, thus resulting in a decrease in recall compared to either method alone.
+Table \ref{zredtable} shows the proportion of hypotheses generated by zero-threshold filtering compared to pure morphological tokenization. Table \ref{zflttable} presents the remaining results from this experiment. As could be predicted from the poor recall scores obtained in the zero-threshold statistical experiment and shown in table \ref{zstattable}, zero-threshold filtering resulted in reduced scores for almost all measures compared to pure morphological tokenization. There are slight improvements to ending boundary precisions for Arabic and Korean, and a slight increase in start boundary precision and token precision on English, but these are far outweighed by the reduced recall rates. Additionally, while useful for comparison with the pure statistical experiments, single-boundary precision is one of the least consequential performance metrics. What matters most are token precision and token recall; i.e., not merely correctly identifying individual boundaries, but correctly pairing them. While the filtering method did achieve its goal of increasing precision by some amount, the fact that it only produced \textit{marginal} improvement on token precision in one language, and had a severely negative effect on recall, makes this an essentially useless combination for practical purposes. The reduction rates, indicating potential run-time efficiency improvements, while impressive, are thus unfortunately irrelevant.
 
 \begin{table}
 	\centering	
@@ -305,23 +309,15 @@ Korean was the only language for which any filtering occurred at all. Unfortunat
 	\caption{Results for Gap threshold Filtering}
 	\label{gflttable}
 \end{table}
+
+Tables \ref{gredtable} and \ref{gflttable} present the reduction rates and prediction statistics, respectively, for the gap-threshold filtering experiments. The results for gap-threshold filtering show better performance than zero-threshold filtering, but no better utility. The level of overprediction produced by the gap threshold algorithm resulted in almost no actual filtering of the morphological outputs. In consequence, the results are identical between these two methods for Arabic and English.
+
+Only tiny (less than $\pm.01\%$) differences exist for Korean. Nevertheless, Korean was the only language for which any filtering occurred at all. Unfortunately, even with the high level of overprediction in the gap threshold statistical results, the set of correct boundaries predicted by the gap threshold statistical algorithm did not completely overlap with the set of correct start boundaries predicted by the morphological algorithm, resulting in a decrease in recall compared to either method alone. The extra time needed to calculate statistical information thus represent a loss rather than a gain in run-time efficiency, for, at best, no improvement. At worst, this hybrid approach results in both worse run-time efficiency and decreased recall.
+
 \FloatBarrier
 
 \subsection{Filling}
 \FloatBarrier
-
-Surprisingly, the results for the filling hybridization method were identical for both zero-threshold and gap threshold statistics on all measures and across all three languages. Thus, only one set of unified results is shown, in \ref{filtable}. This suggests that, despite the vast differences in results between the zero-threshold and gap threshold statistical experiments on their own, both had identical outputs on spans of text for which the morphological algorithm alone could not identify any possible tokens. This pattern would have to break down given a morphological model with sufficiently low coverage, since results for zero-threshold filling and gap threshold filling must approach the results obtained from the pure statistical experiments in the limit where analyzer coverage goes to zero. But, even with token coverage as low as 76.12\%, as demonstrated by ENGLEX on the English corpus, the pattern still holds.
-
-The identical results are fairly easy to explain for Arabic\textemdash~ with such high initial recall scores due to MADAMIRA's high coverage, there was very little left to fill in, and thus little room for potential variation in the output from different statistical algorithms.
-
-The situation is more complicated for English and Korean, but suggests some commonality in the kinds of types that are likely to be left out of a morphological model. There are two (non-exclusive) obvious possibilities: First, they may be relatively small but frequent. Small gaps occupied by only one or a few small tokens minimize the opportunities for different statistical algorithms to differ, just as is the case with Arabic. Second, they may have uniquely distinguishing MI scores for their bounding bigrams. Specifically, they are types whose sets of bounding bigrams tend to have MI scores that are both less than or equal to zero, and less than the largest gap in MI scores for all bigrams in the language. Given that the largest gap is above zero for all three languages tested\footnote{Even without checking the specific numbers, this can be inferred from how much the gap threshold method overpredicts compared to zero threshold.}, this is equivalent to saying that the boundaries of common tokens unlikely to be recognized by morphological analyzers tend to have MI scores below zero, while the poor recall of the zero-threshold method indicates that many genuine tokens that are recognized by a morphological analyzer have boundary MI values above zero, but below the largest gap.
-
-Both of these explanations appear to fail when confronted with examples like the aforementioned ``city--to", which make up a significant fraction of the missed tokens in English, and which is neither particularly short nor possesses particularly uncommon boundary characters. In fact, however, an eight-codepoint missed token like ``city--to" \textit{does not} constitute an eight-codepoint gap. This is because the morphological tokenizer \textit{does} identify tokens in that span\textemdash~ just not the one in the answer key. If those tokens were in fact legitimate, this would be a problem to be addressed by filtering, not filling.
-
-In fact, the statistical algorithms are primarily identifying numbers and punctuation marks. Given that ENGLEX, as previously mentioned, misses both of these categories, while KLEX only fails on numbers, this explains why English is improved so much more than Korean, even though it does not quite reach parity: English simply has more of the relevant categories to make up, and results after statistical filling are limited by the number of remaining word tokens which the morphological analyzers cannot recognize.
-
-Filling gaps of course comes at a cost in precision; this is seen most strongly in the English data, which is to be expected since the low coverage of the English analyzer provides more gaps to fill in, and thus more opportunities for overprediction. This of course results in a severe drop in F-score relative to pure morphological tokenization, and in fact the small reduction in precision more than offsets the small increase in recall for both remaining languages as well. Given that low recall makes identifying the correct tokenization from a lattice impossible, however, while low precision merely makes it more difficult, this is an acceptable tradeoff in most situations, since the precision scores for all languages are still much higher than would be obtained by the brute-force method.
-
 \begin{table}
 	\centering
 	\begin{tabular}{ cc | c | c | c |}
@@ -355,3 +351,17 @@ Filling gaps of course comes at a cost in precision; this is seen most strongly 
 	\caption{Results for Filling- Both Thresholds}
 	\label{filtable}
 \end{table}
+
+Surprisingly, the results for the filling hybridization method were identical for both zero-threshold and gap threshold statistics on all measures and across all three languages. Thus, only one set of unified results is shown, in table \ref{filtable}. Recall scores are all higher than or equal to those for pure morphological tokenization, but precision scores are lower. On balance, this has resulted in slightly lower F-scores as well. The largest improvement is seen for English, which also had the lowest morphological recall. Korean, with higher morphological recall scores, shows a much smaller improvement over the morphological tokenization results, and the improvement for Arabic is negligible.
+
+The congruence of results from zero-threshold and gap-threshold filling suggests that, despite the vast differences in results between the zero-threshold and gap-threshold statistical experiments on their own, both had identical outputs on spans of text for which the morphological algorithm alone could not identify any possible tokens. This pattern would have to break down given a morphological model with sufficiently low coverage, since results for zero-threshold filling and gap threshold filling must approach the results obtained from the pure statistical experiments in the limit where analyzer coverage goes to zero. But, even with token coverage as low as 0.761174, as demonstrated by ENGLEX on the English corpus, the pattern still holds.
+
+The identical results of both filling experiments are fairly easy to explain for Arabic\textemdash with such high initial recall scores due to MADAMIRA's high coverage, there was very little left to fill in, and thus little room for potential variation in the output from different statistical algorithms. This also explains why Arabic sees almost no improvement in recall\textemdash there simply aren't that many more correct tokens left to find. 
+
+The situation is more complicated for English and Korean, but suggests some commonality in the kinds of types that are likely to be left out of a morphological model. There are two (non-exclusive) obvious possibilities: First, they may be relatively small but frequent. Small gaps occupied by only one or a few small tokens minimize the opportunities for different statistical algorithms to differ, just as is the case with Arabic. Second, they may have uniquely distinguishing MI scores for their bounding bigrams. Specifically, they are types whose sets of bounding bigrams tend to have MI scores that are both less than or equal to zero, and less than the largest gap in MI scores for all bigrams in the language. Given that the largest gap is above zero for all three languages tested\footnote{Even without checking the specific numbers, this can be inferred from how much the gap threshold method overpredicts compared to zero threshold.}, this is equivalent to saying that the boundaries of common tokens unlikely to be recognized by morphological analyzers tend to have MI scores below zero, while the poor recall of the zero-threshold method indicates that many genuine tokens that are recognized by a morphological analyzer have boundary MI values above zero, but below the largest gap.
+
+Both of these explanations appear to fail when confronted with examples like the aforementioned ``city--to", which make up a significant fraction of the missed tokens in English, and which is neither particularly short nor possesses particularly uncommon boundary characters. In fact, however, an eight-codepoint missed token like ``city--to" \textit{does not} constitute an eight-codepoint gap. This is because the morphological tokenizer \textit{does} identify tokens in that span\textemdash just not the one in the answer key. If those tokens were in fact legitimate, this would be a problem to be addressed by filtering, not filling.
+
+In fact, the statistical algorithms are primarily identifying numbers and punctuation marks. Given that ENGLEX, as previously mentioned, misses both of these categories, while KLEX only fails on numbers, this explains why English is improved so much more than Korean, even though it does not quite reach parity: English simply has more of the relevant categories to make up, and results after statistical filling are limited by the number of remaining word tokens which the morphological analyzers cannot recognize.
+
+Filling gaps of course comes at a cost in precision; this is seen most strongly in the English data, which is to be expected since the low coverage of the English analyzer provides more gaps to fill in, and thus more opportunities for overprediction. This of course results in a severe drop in F-score relative to pure morphological tokenization, and as previously mentioned the small reduction in precision more than offsets the small increase in recall for both remaining languages as well. The precision scores for all languages are, however, still much higher than would be obtained by the brute-force method. Given that low recall makes identifying the correct tokenization from a lattice impossible, however, while low precision merely makes it more difficult, this is therefore an acceptable tradeoff in most situations.
