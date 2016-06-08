@@ -292,12 +292,13 @@
   % Add a pdf bookmark so that it will show up in the PDF
   \pdfbookmark[0]{Abstract}{Abstract}
   % Put the abstract header centered on the page
+  \singlespacing
   \begin{center}
     ABSTRACT\\
     \vspace*{0.375in}
     %\afterpage{\cleardoublepage}
     % We want the title to be double spaced
-    \byubaselinestretch{2}
+    % \byubaselinestretch{2}
     {\expandafter{\@title}}\\
     \vspace*{0.375in}
     \@author\\
@@ -306,7 +307,7 @@
     \vspace*{-0.25in}
   \end{center}
   % We want the actual abstract to be single spaced
-  \singlespacing
+  %\singlespacing
   \setlength{\parskip}{1\baselineskip}
   % Start a new line, so that it will indent the abstract
   \par
