@@ -295,12 +295,12 @@
   \singlespacing
   \begin{center}
     ABSTRACT\\
-    \vspace*{0.375in}
+    \vspace*{12pt}
     %\afterpage{\cleardoublepage}
     % We want the title to be double spaced
     % \byubaselinestretch{2}
     {\expandafter{\@title}}\\
-    \vspace*{0.375in}
+    \vspace*{12pt}
     \@author\\
     \cmdBYUs@names@deptname\\
     \@degreename
@@ -336,13 +336,14 @@
 	 	\afterpage{\cleardoublepage}
 	 \fi   
     %\afterpage{\cleardoublepage}
-    ACKNOWLEDGMENTS\\[45pt]
+    ACKNOWLEDGMENTS
   \end{center}
-  \doublespacing
   % Start a new line, so that it will indent the abstract
   \par
   % Include the acknowledgements.tex file
-  \ifBYUs@formatting@etdsubmission  \else \afterpage{\cleardoublepage} \fi   
+  \ifBYUs@formatting@etdsubmission  \else \afterpage{\cleardoublepage} \fi
+  \vspace{-12pt}
+  \doublespacing  
   \input{acknowledgements}
   \ifBYUs@formatting@singlepageacknowledgements
     % The beginning of the document needs to be single sided, so force it to be so
@@ -497,12 +498,18 @@
   % Write the abstract in a separate .tex file and include it with the following command:
   \ifBYUs@sections@noabstract
   \else
+    \phantomsection
+    \label{abstract}
+    \addcontentsline{toc}{chapter}{ABSTRACT}
     \@abstractpage
   \fi
 
   % Include acknowledgments (optional) here
   \ifBYUs@sections@noacknowledgements
   \else
+    \phantomsection
+    \label{acknowledgments}
+    \addcontentsline{toc}{chapter}{ACKNOWLEDGMENTS}
     \@acknowledgements
   \fi
 
